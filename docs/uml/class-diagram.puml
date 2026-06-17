@@ -1,0 +1,25 @@
+@startuml
+class Main
+class DiaryView
+class DiaryController
+class DiaryEntry
+interface DiaryRepository
+class SQLiteDiaryRepository
+class DatabaseConnection
+interface EntryChangeListener
+class EntryEventPublisher
+class EntryValidator
+
+Main --> DiaryView
+Main --> DiaryController
+Main --> SQLiteDiaryRepository
+DiaryView ..|> EntryChangeListener
+DiaryView --> DiaryController
+DiaryController --> DiaryRepository
+DiaryController --> EntryEventPublisher
+DiaryController --> EntryValidator
+DiaryRepository <|.. SQLiteDiaryRepository
+SQLiteDiaryRepository --> DatabaseConnection
+SQLiteDiaryRepository --> DiaryEntry
+EntryEventPublisher --> EntryChangeListener
+@enduml

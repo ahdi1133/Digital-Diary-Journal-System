@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+actor User
+rectangle "Digital Diary / Journal System" {
+  usecase "Add New Entry" as Add
+  usecase "Edit Entry" as Edit
+  usecase "Delete Entry" as Delete
+  usecase "View All Entries" as View
+  usecase "Search Entries" as Search
+}
+User --> Add
+User --> Edit
+User --> Delete
+User --> View
+User --> Search
+@enduml

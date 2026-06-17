@@ -1,0 +1,23 @@
+@startuml
+actor User
+participant DiaryView
+participant DiaryController
+participant EntryValidator
+participant SQLiteDiaryRepository
+database SQLite
+participant EntryEventPublisher
+
+User -> DiaryView: Click Save
+DiaryView -> DiaryController: addEntry(title, date, content)
+DiaryController -> EntryValidator: validate(...)
+DiaryController -> SQLiteDiaryRepository: create(entry)
+SQLiteDiaryRepository -> SQLite: INSERT diary_entries
+SQLite --> SQLiteDiaryRepository: generated id
+SQLiteDiaryRepository --> DiaryController: saved entry
+DiaryController -> SQLiteDiaryRepository: findAll()
+SQLiteDiaryRepository -> SQLite: SELECT entries
+SQLite --> SQLiteDiaryRepository: rows
+DiaryController -> EntryEventPublisher: notifyEntriesChanged(entries)
+EntryEventPublisher -> DiaryView: onEntriesChanged(entries)
+DiaryController --> DiaryView: saved entry
+@enduml
