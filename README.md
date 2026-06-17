@@ -13,7 +13,7 @@ Java Swing desktop application for writing, saving, editing, deleting, viewing, 
 - Singleton database connection manager
 - Observer pattern for refreshing the entry list
 - Unit tests for repository and controller behavior
-- UML diagrams in PlantUML format
+
 
 ## Run
 
